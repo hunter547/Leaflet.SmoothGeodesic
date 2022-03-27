@@ -1,4 +1,3 @@
 node_modules/
 .vscode/
-dist/*
-!dist/leaflet.smoothgeodesic.umd.min.js
+dist/
