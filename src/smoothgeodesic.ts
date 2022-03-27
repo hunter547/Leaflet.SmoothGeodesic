@@ -10,6 +10,10 @@ export class SmoothGeodesicClass extends L.Path {
     }
     private generateCoordinates(origin: Coordinate, destination: Coordinate, verticies:number): void {
         const generator = new arc.GreatCircle(greatCircleCoordinates(origin), greatCircleCoordinates(destination))
-        const arcObject = generator.Arc(verticies)
+        const { geometries } = generator.Arc(verticies)
+        if (!geometries[0]?.coords) {
+            throw `The coords ${origin} and ${destination} are malformed. Please use format [number, number] (i.e. [0, 0]) for the coordinates.`
+        }
+        console.log(geometries[0].coords)
     }
 }

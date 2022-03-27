@@ -37,14 +37,14 @@ const bundle = (format, filename, options = {}) => ({
 
 export default [
   bundle('umd', pkg.browser, { resolve: true, minimize: false }),
-  // {
-  //   input: 'src/index.ts',
-  //   output: {
-  //     file: pkg.types,
-  //     format: 'es',
-  //   },
-  //   plugins: [
-  //     dts(),
-  //   ],
-  // }
+  {
+    input: 'src/index.ts',
+    output: {
+      file: pkg.types,
+      format: 'es',
+    },
+    plugins: [
+      dts(),
+    ],
+  }
 ]
