@@ -99,6 +99,6 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src/index.ts", "src/smoothgeodesic.ts", "types-resolver.ts", "typings/arc/index.d.ts",
+    "src/**/*.ts", "typings/**/*.d.ts",
   ],
 }

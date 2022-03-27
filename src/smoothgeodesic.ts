@@ -1,17 +1,14 @@
 import * as L from 'leaflet'
 import arc from "arc"
 import { greatCircleCoordinates } from './types-resolver'
-
-export interface SmoothGeodesicOptions extends L.PathOptions {
-    animate?: KeyframeAnimationOptions | number
-}
+import { Coordinate, SmoothGeodesicOptions } from '../typings/smoothgeodesic'
 
 export class SmoothGeodesicClass extends L.Path {
-    constructor(origin: L.LatLng | [number, number], destination: L.LatLng | [number, number], verticies:number, options?: SmoothGeodesicOptions) {
+    constructor(origin: Coordinate, destination: Coordinate, verticies:number, options?: SmoothGeodesicOptions) {
         super(options || {})
         this.generateCoordinates(origin, destination, verticies)
     }
-    private generateCoordinates(origin: L.LatLng | [number, number], destination: L.LatLng | [number, number], verticies:number): void {
+    private generateCoordinates(origin: Coordinate, destination: Coordinate, verticies:number): void {
         const generator = new arc.GreatCircle(greatCircleCoordinates(origin), greatCircleCoordinates(destination))
         const arcObject = generator.Arc(verticies)
     }
