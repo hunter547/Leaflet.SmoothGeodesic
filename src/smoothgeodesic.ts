@@ -13,7 +13,6 @@ export class SmoothGeodesicClass extends L.Path {
     }
     private generateCoordinates(origin: L.LatLng | [number, number], destination: L.LatLng | [number, number], verticies:number): void {
         const generator = new arc.GreatCircle(greatCircleCoordinates(origin), greatCircleCoordinates(destination))
-        const { coords } = generator.Arc(verticies)
-        console.log(coords)
+        const arcObject = generator.Arc(verticies)
     }
 }
