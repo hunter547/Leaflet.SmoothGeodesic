@@ -1,15 +1,22 @@
 import "leaflet"
-import { SmoothGeodesicClass } from "./smoothgeodesic"
-
+import { SmoothGeodesicPathData } from "../typings/smoothgeodesic"
 declare module "leaflet" {
-    type SmoothGeodesic = SmoothGeodesicClass
-    let SmoothGeodesic: typeof SmoothGeodesicClass
-    let smoothGeodesic: (...args: ConstructorParameters<typeof SmoothGeodesicClass>) => SmoothGeodesicClass
-}
+  export interface SmoothGeodesicOptions extends PathOptions {
+    animate?: KeyframeAnimationOptions | number
+  }
+  export class SmoothGeodesic extends Path {
+    constructor(pathData: SmoothGeodesicPathData, options: SmoothGeodesicOptions)
 
-if (typeof window.L !== "undefined") {
-    window.L.SmoothGeodesic = SmoothGeodesicClass;
-    window.L.smoothGeodesic = (...args: ConstructorParameters<typeof SmoothGeodesicClass>) => new SmoothGeodesicClass(...args);
-}
-
+<<<<<<< Updated upstream
 export * from "./smoothgeodesic"
+=======
+    // Public functions
+    setPath(pathData: SmoothGeodesicPathData): this
+    getPath(): SmoothGeodesicPathData
+    getLatLngs(): SmoothGeodesicPathData
+    setLatLngs(pathData: SmoothGeodesicPathData): this
+  }
+
+  export function smoothGeodesic(pathData: SmoothGeodesicPathData, options: SmoothGeodesicOptions): SmoothGeodesic
+}
+>>>>>>> Stashed changes
