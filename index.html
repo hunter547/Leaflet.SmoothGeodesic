@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Leaflet smooth geodesic demo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+    <script src="./dist/leaflet.smoothgeodesic.umd.min.js"></script>
+    <style>
+        #map {
+            height: calc(100vh - 16px);
+        }
+    </style>
+
 </head>
+
 <body>
-    <h1>Leaflet smooth geodesic demo</h1>
+    <div id="map"></div>
+    
+    
+    <!-- 
+        SMOOTH GEODESIC DEMO CODE
+     -->
+    <script>
+        //set up map
+        var map = L.map('map').setView([46.05, 11.05], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+        L.smoothGeodesic([0, 0], [0, 50], 100)
+    </script>
+
+
 </body>
+
 </html>

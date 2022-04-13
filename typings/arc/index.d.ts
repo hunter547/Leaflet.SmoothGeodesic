@@ -1,13 +1,19 @@
 // No arc type file, have to create one
 
-interface Coordinate {
+type ArcCoordinate = {
     x: number,
-    y: number
+    y:number
 }
+
+type LineString = {
+    coords: [number, number][]
+    length: number
+}
+
 
 declare module 'arc' {
     class GreatCircle {
-        constructor(start: Coordinate, end:Coordinate)
-        Arc(verticies:number): { coords: [number,number][], length:number }
+        constructor(start: ArcCoordinate, end:ArcCoordinate)
+        Arc(verticies:number): { geometries: LineString[], properties: {} }
     }
 }

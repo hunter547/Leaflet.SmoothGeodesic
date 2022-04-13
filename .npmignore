@@ -1,1 +1,6 @@
-src/
+src
+index.html
+rollup.config.js
+.vscode
+package-lock.json
+typings

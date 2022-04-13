@@ -12,6 +12,4 @@ if (typeof window.L !== "undefined") {
     window.L.smoothGeodesic = (...args: ConstructorParameters<typeof SmoothGeodesicClass>) => new SmoothGeodesicClass(...args);
 }
 
-new SmoothGeodesicClass([0, 0], [0, 50], 100)
-
 export * from "./smoothgeodesic"
