@@ -7,9 +7,6 @@ declare module "leaflet" {
   export class SmoothGeodesic extends Path {
     constructor(pathData: SmoothGeodesicPathData, options: SmoothGeodesicOptions)
 
-<<<<<<< Updated upstream
-export * from "./smoothgeodesic"
-=======
     // Public functions
     setPath(pathData: SmoothGeodesicPathData): this
     getPath(): SmoothGeodesicPathData
@@ -19,4 +16,3 @@ export * from "./smoothgeodesic"
 
   export function smoothGeodesic(pathData: SmoothGeodesicPathData, options: SmoothGeodesicOptions): SmoothGeodesic
 }
->>>>>>> Stashed changes
