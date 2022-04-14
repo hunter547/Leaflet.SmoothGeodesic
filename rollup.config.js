@@ -9,7 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 const banner = `/*! Leaflet.SmoothGeodesic ${pkg.version} - created by Hunter Evanoff - https://github.com/hunter547/Leaflet.SmoothGeodesic */`;
 
 const bundle = (format, filename, options = {}) => ({
-  input: 'src/index.ts',
+  input: 'src/smoothgeodesic.ts',
   output: {
     file: filename,
     format: format,
@@ -36,9 +36,9 @@ const bundle = (format, filename, options = {}) => ({
 });
 
 export default [
-  bundle('umd', pkg.browser, { resolve: true, minimize: false }),
+  bundle('umd', pkg.browser, { resolve: true, minimize: true }),
   {
-    input: 'src/index.ts',
+    input: 'typings/smoothgeodesic/index.d.ts',
     output: {
       file: pkg.types,
       format: 'es',

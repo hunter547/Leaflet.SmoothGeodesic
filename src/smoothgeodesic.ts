@@ -1,22 +1,20 @@
 import L, { LatLngExpression, SmoothGeodesicOptions } from 'leaflet'
-import { greatCircleCoordinates } from './types-resolver'
 import { GreatCircle } from "./arc"
 import { Coordinates, SmoothGeodesicLatLngControlPoints, SmoothGeodesicPathData, SmoothGeodesicPathDataElement, SmoothGeodesicSVGCommand } from "../typings/smoothgeodesic"
 
 L.SmoothGeodesic = L.Path.extend({
   options: {},
 
-  initialize: function (origin: L.LatLng | [number, number], destination: L.LatLng | [number, number], exponentialMidpointCalculations:number, options?: SmoothGeodesicOptions) {
+  initialize: function (origin: [number, number], destination: L.LatLng | [number, number], exponentialMidpointCalculations:number, options?: SmoothGeodesicOptions) {
     L.setOptions(this, options)
-    this._coords = [] as Coordinates[]
-    this._generateCoordinates(origin, destination, exponentialMidpointCalculations)
+    this._coords = this._generateCoordinates(origin, destination, exponentialMidpointCalculations)
     this._setPath(this._catmullRom2bezier())
   },
 
-  _generateCoordinates: function(origin: L.LatLng | [number, number], destination: L.LatLng | [number, number], exponentialMidpointCalculations:number): void {
-    const generator = new GreatCircle(greatCircleCoordinates(origin), greatCircleCoordinates(destination))
+  _generateCoordinates: function(origin: [number, number], destination: [number, number], exponentialMidpointCalculations:number): [number, number][] {
+    const generator = new GreatCircle(origin, destination)
     const { geometries } = generator.Arc(exponentialMidpointCalculations)
-    this._coords = geometries[0].coords
+    return geometries[0].coords
   },
 
   _catmullRom2bezier: function(
@@ -96,17 +94,17 @@ L.SmoothGeodesic = L.Path.extend({
   },
 
   _setPath: function (path: SmoothGeodesicPathData) {
+    console.log(path)
     this._pathData = path
     this._bounds = this._computeBounds()
   },
 
-  _SmoothGeodesicSVGCommand: function (command: string): command is SmoothGeodesicSVGCommand {
+  _isSmoothGeodesicSVGCommand: function (command: string): command is SmoothGeodesicSVGCommand {
     return ["M", "L", "H", "V", "C", "S", "Q", "T", "Z"].indexOf(command) !== -1
   },
 
   _computeBounds: function () {
     const bound = L.latLngBounds([])
-    let lastPoint: SmoothGeodesicLatLngControlPoints = L.latLng(0, 0)
     let lastCommand: SmoothGeodesicSVGCommand = "M"
     let coord: SmoothGeodesicPathDataElement
     for (let i = 0; i < this._pathData.length; i++) {
@@ -129,12 +127,11 @@ L.SmoothGeodesic = L.Path.extend({
 
         endPoint.controlPoint1 = controlPoint1
         endPoint.controlPoint2 = controlPoint2
-        lastPoint = endPoint
       } else {
         bound.extend(coord as LatLngExpression)
-        lastPoint = L.latLng(coord[0] as number, coord[1] as number)
       }
     }
+    console.log(bound)
     return bound
   },
 
@@ -166,7 +163,7 @@ L.SmoothGeodesic = L.Path.extend({
 
     for (let i = 0; i < this._pathData.length; i++) {
       coord = this._pathData[i]
-      if (this._isCurveSVGCommand(coord)) {
+      if (this._isSmoothGeodesicSVGCommand(coord)) {
         this._points.push(coord)
         curCommand = coord as SmoothGeodesicSVGCommand
       } else {
@@ -207,7 +204,7 @@ L.SmoothGeodesic = L.Path.extend({
       str = ""
     for (let i = 0; i < points.length; i++) {
       point = points[i]
-      if (typeof point == "string" && this._isCurveSVGCommand(point)) {
+      if (typeof point == "string" && this._isSmoothGeodesicSVGCommand(point)) {
         curCommand = point as SmoothGeodesicSVGCommand
         str += curCommand
       } else {
@@ -224,6 +221,7 @@ L.SmoothGeodesic = L.Path.extend({
         }
       }
     }
+    console.log(str)
     return str || "M0 0"
   },
 
@@ -254,6 +252,7 @@ L.SmoothGeodesic = L.Path.extend({
 
   // SVG specific logic
   _updateCurveSvg: function () {
+    console.log(this._points)
     this._renderer._setPath(this, this._curvePointsToPath(this._points))
 
     if (this.options.animate) {
@@ -272,6 +271,6 @@ L.SmoothGeodesic = L.Path.extend({
   }
 })
 
-L.smoothGeodesic = function (path, options) {
-  return new L.SmoothGeodesic(path, options)
+L.smoothGeodesic = function (source, destination, exponentialMidpointCalculations, options?) {
+  return new L.SmoothGeodesic(source, destination, exponentialMidpointCalculations, options || {})
 }

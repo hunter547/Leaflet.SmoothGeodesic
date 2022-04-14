@@ -11,8 +11,6 @@
   the curve.
 */
 
-import { LatLng } from "leaflet"
-
 // ///////////////////////
 // FIRST IMPLEMENTATION //
 // ///////////////////////
@@ -281,70 +279,70 @@ class GreatCircle {
 // SOURCE
 // Adaptation of Henry Thasler's (and company) Leaflet.Geodesic 
 // https://github.com/henrythasler/Leaflet.Geodesic/blob/master/src/geodesic-core.ts
-function midpoint(start: LatLng, dest: LatLng): [number, number] {
-  // om = atan2( sinφ1 + sinφ2, √( (cosφ1 + cosφ2⋅cosΔλ)² + cos²φ2⋅sin²Δλ ) )
-  // ym = λ1 + atan2(cosφ2⋅sinΔλ, cosφ1 + cosφ2⋅cosΔλ)
-  // midpoint is sum of vectors to two points: mathforum.org/library/drmath/view/51822.html
+// function midpoint(start: LatLng, dest: LatLng): [number, number] {
+//   // om = atan2( sinφ1 + sinφ2, √( (cosφ1 + cosφ2⋅cosΔλ)² + cos²φ2⋅sin²Δλ ) )
+//   // ym = λ1 + atan2(cosφ2⋅sinΔλ, cosφ1 + cosφ2⋅cosΔλ)
+//   // midpoint is sum of vectors to two points: mathforum.org/library/drmath/view/51822.html
 
-  function toRadians(degree: number): number {
-    return (degree * Math.PI) / 180
-  }
+//   function toRadians(degree: number): number {
+//     return (degree * Math.PI) / 180
+//   }
 
-  function toDegrees(radians: number): number {
-    return (radians * 180) / Math.PI
-  }
+//   function toDegrees(radians: number): number {
+//     return (radians * 180) / Math.PI
+//   }
 
-  const φ1 = toRadians(start.lat)
-  const λ1 = toRadians(start.lng)
-  const φ2 = toRadians(dest.lat)
-  const Δλ = toRadians(dest.lng - start.lng)
+//   const φ1 = toRadians(start.lat)
+//   const λ1 = toRadians(start.lng)
+//   const φ2 = toRadians(dest.lat)
+//   const Δλ = toRadians(dest.lng - start.lng)
 
-  // get cartesian coordinates for the two points
-  const A = { x: Math.cos(φ1), y: 0, z: Math.sin(φ1) } // place point A on prime meridian y=0
-  const B = {
-    x: Math.cos(φ2) * Math.cos(Δλ),
-    y: Math.cos(φ2) * Math.sin(Δλ),
-    z: Math.sin(φ2)
-  }
+//   // get cartesian coordinates for the two points
+//   const A = { x: Math.cos(φ1), y: 0, z: Math.sin(φ1) } // place point A on prime meridian y=0
+//   const B = {
+//     x: Math.cos(φ2) * Math.cos(Δλ),
+//     y: Math.cos(φ2) * Math.sin(Δλ),
+//     z: Math.sin(φ2)
+//   }
 
-  // vector to midpoint is sum of vectors to two points (no need to normalise)
-  const C = { x: A.x + B.x, y: A.y + B.y, z: A.z + B.z }
+//   // vector to midpoint is sum of vectors to two points (no need to normalise)
+//   const C = { x: A.x + B.x, y: A.y + B.y, z: A.z + B.z }
 
-  // φm
-  const om = Math.atan2(C.z, Math.sqrt(C.x * C.x + C.y * C.y))
-  // λm
-  const ym = λ1 + Math.atan2(C.y, C.x)
+//   // φm
+//   const om = Math.atan2(C.z, Math.sqrt(C.x * C.x + C.y * C.y))
+//   // λm
+//   const ym = λ1 + Math.atan2(C.y, C.x)
 
-  return [toDegrees(om), toDegrees(ym)]
-}
+//   return [toDegrees(om), toDegrees(ym)]
+// }
 
-function recursiveMidpoint(
-  start: [number, number],
-  dest: [number, number],
-  iterations: number
-): [number, number][] {
-  const midpointArray: [number, number][] = [start, dest]
-  const nextMidpoint = midpoint(
-    new LatLng(start[0], start[1]),
-    new LatLng(dest[0], dest[1])
-  )
+// function recursiveMidpoint(
+//   start: [number, number],
+//   dest: [number, number],
+//   iterations: number
+// ): [number, number][] {
+//   const midpointArray: [number, number][] = [start, dest]
+//   const nextMidpoint = midpoint(
+//     new LatLng(start[0], start[1]),
+//     new LatLng(dest[0], dest[1])
+//   )
 
-  if (iterations > 0) {
-    midpointArray.splice(
-      0,
-      1,
-      ...recursiveMidpoint(start, nextMidpoint, iterations - 1)
-    )
-    midpointArray.splice(
-      midpointArray.length - 2,
-      2,
-      ...recursiveMidpoint(nextMidpoint, dest, iterations - 1)
-    )
-  } else {
-    midpointArray.splice(1, 0, nextMidpoint)
-  }
+//   if (iterations > 0) {
+//     midpointArray.splice(
+//       0,
+//       1,
+//       ...recursiveMidpoint(start, nextMidpoint, iterations - 1)
+//     )
+//     midpointArray.splice(
+//       midpointArray.length - 2,
+//       2,
+//       ...recursiveMidpoint(nextMidpoint, dest, iterations - 1)
+//     )
+//   } else {
+//     midpointArray.splice(1, 0, nextMidpoint)
+//   }
 
-  return midpointArray
-}
+//   return midpointArray
+// }
 
-export { GreatCircle, recursiveMidpoint }
+export { GreatCircle }
