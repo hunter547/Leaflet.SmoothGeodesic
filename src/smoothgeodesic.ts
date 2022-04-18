@@ -94,7 +94,6 @@ L.SmoothGeodesic = L.Path.extend({
   },
 
   _setPath: function (path: SmoothGeodesicPathData) {
-    console.log(path)
     this._pathData = path
     this._bounds = this._computeBounds()
   },
@@ -131,7 +130,6 @@ L.SmoothGeodesic = L.Path.extend({
         bound.extend(coord as LatLngExpression)
       }
     }
-    console.log(bound)
     return bound
   },
 
@@ -221,7 +219,6 @@ L.SmoothGeodesic = L.Path.extend({
         }
       }
     }
-    console.log(str)
     return str || "M0 0"
   },
 
@@ -231,7 +228,10 @@ L.SmoothGeodesic = L.Path.extend({
 
   onAdd: function (map: L.Map) {
     L.Path.prototype.onAdd.call(this, map) // calls _update()
-
+    let flyToDuration = (this.options.fitBounds ? this.options.fitBounds.duration || 0.25 : 0) * 1000
+    if (this.options.fitBounds) {
+      this._map.fitBounds(this._bounds, this.options.fitBounds)
+    }
     if (this.options.animate && this._path.animate) {
       const length = this._svgSetDashArray()
       // If there is a delay property, immediately set strokeDashoffset so that the curve doesn't appear until the delay is up.
@@ -239,20 +239,22 @@ L.SmoothGeodesic = L.Path.extend({
         this._path.animate(
           [{ strokeDashoffset: length }, { strokeDashoffset: length }],
           {
-            duration: this.options.animate.delay
+            duration: this.options.animate.delay + flyToDuration
           }
         )
       }
       this._path.animate(
         [{ strokeDashoffset: length }, { strokeDashoffset: 0 }],
-        this.options.animate
+        typeof this.options.animate === "number" ? 
+          this.options.animate + flyToDuration 
+        : 
+          { ...this.options.animate, delay: this.options.animate?.delay || 0 + flyToDuration }
       )
     }
   },
 
   // SVG specific logic
   _updateCurveSvg: function () {
-    console.log(this._points)
     this._renderer._setPath(this, this._curvePointsToPath(this._points))
 
     if (this.options.animate) {
