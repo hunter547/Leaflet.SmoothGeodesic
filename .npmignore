@@ -4,3 +4,4 @@ rollup.config.js
 .vscode
 package-lock.json
 typings
+dist/leaflet.smoothgeodesic.umd.min.js
