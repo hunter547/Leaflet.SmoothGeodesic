@@ -6,15 +6,11 @@
 	"license": "MIT",
 	"main": "dist/leaflet.smoothgeodesic.js",
 	"browser": "dist/leaflet.smoothgeodesic.umd.min.js",
-	"types": "types/leaflet.smoothgeodesic.d.ts",
+	"types": "dist/leaflet.smoothgeodesic.d.ts",
 	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/hunter547/Leaflet.SmoothGeodesic.git"
-	},
-	"exports": {
-		".": "./dist/leaflet.smoothgeodesic.js",
-		"./*": "./dist/*.js"
 	},
 	"homepage": "https://leaflet-smoothgeodesic.netlify.com",
 	"scripts": {
@@ -24,7 +20,7 @@
 	},
 	"files": [
 		"dist/leaflet.smoothgeodesic.js",
-		"types/leaflet.smoothgeodesic.d.ts"
+		"dist/leaflet.smoothgeodesic.d.ts"
 	],
 	"keywords": [
 		"SVG",

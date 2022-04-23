@@ -37,12 +37,12 @@ const bundle = (format, filename, options = {}) => ({
 export default [
 	bundle("umd", pkg.browser, { resolve: true, minimize: true }),
 	bundle("esm", pkg.main, { resolve: true, minimize: false }),
-	// {
-	// 	input: "typings/smoothgeodesic/index.d.ts",
-	// 	output: {
-	// 		file: pkg.types,
-	// 		format: "es",
-	// 	},
-	// 	plugins: [dts()],
-	// },
+	{
+		input: "typings/leaflet.smoothgeodesic/index.d.ts",
+		output: {
+			file: pkg.types,
+			format: "es",
+		},
+		plugins: [dts()],
+	},
 ];

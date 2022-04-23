@@ -6,7 +6,7 @@ import {
 	SmoothGeodesicPathData,
 	SmoothGeodesicPathDataElement,
 	SmoothGeodesicSVGCommand,
-} from "../types/leaflet.smoothgeodesic";
+} from "../typings/leaflet.smoothgeodesic";
 
 L.SmoothGeodesic = L.Path.extend({
 	options: {},
