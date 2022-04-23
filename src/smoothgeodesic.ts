@@ -306,3 +306,10 @@ L.smoothGeodesic = function (
 		options || {}
 	);
 };
+
+if (window.L !== undefined) {
+	window.L.SmoothGeodesic = L.SmoothGeodesic;
+	window.L.smoothGeodesic = (
+		...args: ConstructorParameters<typeof L.SmoothGeodesic>
+	) => new L.SmoothGeodesic(...args);
+}
