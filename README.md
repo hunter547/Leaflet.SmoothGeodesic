@@ -139,7 +139,7 @@ L.smoothGeodesic(Source coordinates, Destination coordinates, Number of midpoint
    <td> Allow for customization of the geodesic path. This options object is an extension of the <a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>. All options listed there can be used here, as well as an <code>animate:{}</code> property, which is of type <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a>, or just a number. This gives the user the ability to both customize the path and animate it from point A to point B with keyframes, or just a number defining the duration of the point A to pont B "flight" time.</td>
    <td><code>{...<a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>, animate: <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a> or number</code>.</td>
    <td>
-   
+
    ```json
    {
    	"weight": 4,
@@ -147,57 +147,49 @@ L.smoothGeodesic(Source coordinates, Destination coordinates, Number of midpoint
    	"animate": { "duration": 3000, "delay": 1000 }
    }
    ```
-   
+
    </td>
    </tr>
    </table>
 
 ### Examples
+
 ```javascript
 L.smoothGeodesic(
-  [40, -99], // <- Source coordinates
-  [27, 30],  // <- Destination coordinates
-  65,        // <- Number of midpoint calculations
-  { 
-    weight: 4, 
-    color: "teal", 
-    animate: 3000 
-  }          // <- Options
-).addTo(map) // map is an instance of L.Map
+	[40, -99], // <- Source coordinates
+	[27, 30], // <- Destination coordinates
+	65, // <- Number of midpoint calculations
+	{
+		weight: 4,
+		color: "teal",
+		animate: 3000,
+	} // <- Options
+).addTo(map); // map is an instance of L.Map
 
 ////////////////////////////////////////////////////////
 
-new L.SmoothGeodesic(
-  L.latLng(60, 100), 
-  L.latLng(40, -4), 
-  65, 
-  { 
-    className: "customPathClass", 
-    animate: {
-      duration: 3000,
-      delay: 3000
-    }
-  }
-).addTo(map)
+new L.SmoothGeodesic(L.latLng(60, 100), L.latLng(40, -4), 65, {
+	className: "customPathClass",
+	animate: {
+		duration: 3000,
+		delay: 3000,
+	},
+}).addTo(map);
 
 ////////////////////////////////////////////////////////
 
-L.smoothGeodesic(
-  new L.LatLng(24, -76), 
-  new L.LatLng(31, 36), 
-  100, 
-  { 
-    opacity: 0.5, 
-    lineCap: "square", 
-    dashArray: "4 1" 
-  }
-).addTo(map)
+L.smoothGeodesic(new L.LatLng(24, -76), new L.LatLng(31, 36), 100, {
+	opacity: 0.5,
+	lineCap: "square",
+	dashArray: "4 1",
+}).addTo(map);
 ```
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
-- [ ] Add Changelog.
+- [x] Add Changelog.
 - [ ] Add CDN delivery of the src code for vanilla javascript support.
 - [ ] Add methods to allow setting of new source and destination coordinates on an existing path.
 - [ ] Extend off the Leaflet Path class instead of extending using the extend method (better typing / more readable)
