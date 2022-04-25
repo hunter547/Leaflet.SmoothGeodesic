@@ -8,6 +8,8 @@
 
 Draw smooth geodesic (Great Circle) paths from a source latitude/longitude to a destination latitude/longitude.
 
+<br />
+
 <div id="top"></div>
 
 <!-- TABLE OF CONTENTS -->
@@ -15,18 +17,27 @@ Draw smooth geodesic (Great Circle) paths from a source latitude/longitude to a 
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="built-with">Built With</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup">Setup</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#installation">Installation</a>
+      <ul>
+        <li><a href="#nodejs">Node.js</a></li>
+      </ul>
+    </li>	  
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#parameters">Parameters</a></li>
+	<li><a href="#examples">Examples</a></li>
+      </ul>
+    </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -78,37 +89,37 @@ import "leaflet.smoothgeodesic";
 
 ## Usage
 
-Give a source coordinate and destination coordinate (with options) and optionally animate it
+Give a source coordinate and destination coordinate (with options) and optionally animate it.
 
 ### Parameters
 
 ```
-L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
+L.smoothGeodesic(Source coordinates, Destination coordinates, Number of midpoints, Options)
 ```
 
-1. <b>Source Coords</b>
+1. <b>Source coordinates</b>
    <table>
      <tr>
      	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
      </tr>
      <tr>
-       <td> The starting location of the curve </td>
+       <td>The starting location of the curve.</td>
        <td><code>[number, number]</code> and <code>L.LatLng(lat, lng)</code></td>
        <td><code>[0, 0]</code> or <code>new L.LatLng(0, 0)</code></td>
      </tr>
    </table>
-   2. <b>Dest Coords</b>
+2. <b>Destination coordinates</b>
    <table>
      <tr>
      	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
      </tr>
      <tr>
-       <td> The ending location of the curve </td>
+       <td>The ending location of the curve.</td>
        <td><code>[number, number]</code> and <code>L.LatLng(lat, lng)</code></td>
        <td><code>[0, 0]</code> or <code>new L.LatLng(0, 0)</code></td>
      </tr>
    </table>
-   3. <b>Number of Midpoints</b>
+3. <b>Number of midpoints</b>
    <table>
      <tr>
      	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
@@ -119,29 +130,27 @@ L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
        <td><code>65</code></td>
      </tr>
    </table>
-   4. <b>Options</b>
+4. <b>Options</b>
    <table>
-     <tr>
-     	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
-     </tr>
-     <tr>
-       <td> Allow for customization of the geodesic path. This options object is an extension of the <a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>. All options listed there can be used here, as well as an <code>animate:{}</code> property, which is of type <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a>, or just a number. This gives the user the ability to both customize the path and animate it from point A to point B with keyframes, or just a number defining the duration of the point A to pont B "flight" time.</td>
-       <td><code>{...<a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>, animate: <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a> or number</code></td>
-<td>
-
-```json
-{
-	"weight": 4,
-	"color": "darkslateblue",
-	"animate": { "duration": 3000, "delay": 1000 }
-}
-```
-
-</td>
-     </tr>
+   <tr>
+   <td> Purpose </td> <td> Available Data Types </td><td> Example </td>
+   </tr>
+   <tr>
+   <td> Allow for customization of the geodesic path. This options object is an extension of the <a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>. All options listed there can be used here, as well as an <code>animate:{}</code> property, which is of type <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a>, or just a number. This gives the user the ability to both customize the path and animate it from point A to point B with keyframes, or just a number defining the duration of the point A to pont B "flight" time.</td>
+   <td><code>{...<a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>, animate: <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a> or number</code>.</td>
+   <td>
+   
+   ```json
+   {
+   	"weight": 4,
+   	"color": "darkslateblue",
+   	"animate": { "duration": 3000, "delay": 1000 }
+   }
+   ```
+   
+   </td>
+   </tr>
    </table>
-
-<!-- ROADMAP -->
 
 ### Examples
 ```javascript
@@ -185,7 +194,7 @@ L.smoothGeodesic(
 ).addTo(map)
 ```
 
-
+<!-- ROADMAP -->
 ## Roadmap
 
 - [ ] Add Changelog.
