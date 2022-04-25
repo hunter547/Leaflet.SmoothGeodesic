@@ -146,41 +146,43 @@ L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
 ### Examples
 ```javascript
 L.smoothGeodesic(
-  [40, -99], 
-  [27, 30], 
-  65, 
+  [40, -99], // <- Source coordinates
+  [27, 30],  // <- Destination coordinates
+  65,        // <- Number of midpoint calculations
   { 
     weight: 4, 
     color: "teal", 
-    animate: { 
-      duration: 3000, 
-      delay: 1000 
-    } 
-  }
+    animate: 3000 
+  }          // <- Options
 ).addTo(map) // map is an instance of L.Map
 
+////////////////////////////////////////////////////////
 
 new L.SmoothGeodesic(
-  L.latLng(40, -99), 
-  L.latLng(27, 30), 
+  L.latLng(60, 100), 
+  L.latLng(40, -4), 
   65, 
   { 
     className: "customPathClass", 
-    animate: 3000 
+    animate: {
+      duration: 3000,
+      delay: 3000
+    }
   }
-)
+).addTo(map)
 
+////////////////////////////////////////////////////////
 
 L.smoothGeodesic(
-  new L.LatLng(40, -99), 
-  new L.LatLng(27, 30), 
+  new L.LatLng(24, -76), 
+  new L.LatLng(31, 36), 
   100, 
   { 
     opacity: 0.5, 
     lineCap: "square", 
     dashArray: "4 1" 
   }
-)
+).addTo(map)
 ```
 
 
