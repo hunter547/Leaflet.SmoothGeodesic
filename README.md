@@ -97,7 +97,7 @@ L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
 3. **Number of Midpoints**
    |Purpose|Available Data Types|Example|
    |---------|-------|--------------------|
-   |The number calculated points along the geodesic path for use by the curve. The higher the number, the more accurate the curve, but more intensive the calculation. 65 points seems to be a good balance of true geodesic accuracy and calculation intensity. 100+ for really accurate lines.| `number (integer)` | `65` |
+   |The number of calculated points along the geodesic path for use by the curve. The higher the number, the more accurate the curve, but more intensive the calculation. 65 points seems to be a good balance of true geodesic accuracy and calculation intensity. 100+ for really accurate lines.| `number (integer)` | `65` |
 4. **Options**
    |Purpose|Available Data Types|Example|
    |---------|-------|--------------------|
