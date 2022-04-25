@@ -141,14 +141,6 @@ L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
      </tr>
    </table>
 
-<table>
-<tr>
-<td> Status </td> <td> Response </td>
-</tr>
-<tr>
-<td> 200 </td>
-<td>
-
 <!-- ROADMAP -->
 
 ## Roadmap
