@@ -143,6 +143,47 @@ L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
 
 <!-- ROADMAP -->
 
+### Examples
+```javascript
+L.smoothGeodesic(
+  [40, -99], 
+  [27, 30], 
+  65, 
+  { 
+    weight: 4, 
+    color: "teal", 
+    animate: { 
+      duration: 3000, 
+      delay: 1000 
+    } 
+  }
+).addTo(map) // map is an instance of L.Map
+
+
+new L.SmoothGeodesic(
+  L.latLng(40, -99), 
+  L.latLng(27, 30), 
+  65, 
+  { 
+    className: "customPathClass", 
+    animate: 3000 
+  }
+)
+
+
+L.smoothGeodesic(
+  new L.LatLng(40, -99), 
+  new L.LatLng(27, 30), 
+  100, 
+  { 
+    opacity: 0.5, 
+    lineCap: "square", 
+    dashArray: "4 1" 
+  }
+)
+```
+
+
 ## Roadmap
 
 - [ ] Add Changelog.
