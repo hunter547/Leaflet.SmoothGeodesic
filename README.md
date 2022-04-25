@@ -240,10 +240,3 @@ This repo wouldn't be possible without the work of these repos:
 - Geodesic calculations: [arc.js](https://github.com/springmeyer/arc.js/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-<style>
-  th { text-align: left; }
-  table tr:first-child {
-  	text-decoration: underline;
-  }
-</style>
