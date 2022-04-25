@@ -130,8 +130,9 @@ export default class GreatCircle {
 		return [lat, lon];
 	}
 	// Generate points along the great circle
-	Arc(npoints: number, options?: Options) {
+	Arc(points: number, options?: Options) {
 		const firstPass = [];
+		const npoints = Math.round(points);
 		if (!npoints || npoints <= 2) {
 			firstPass.push([this.start.lat, this.start.lon]);
 			firstPass.push([this.end.lat, this.end.lon]);

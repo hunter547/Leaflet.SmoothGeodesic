@@ -26,7 +26,6 @@ export interface SmoothGeodesicLatLngControlPoints extends LatLng {
 declare module "leaflet" {
 	export interface SmoothGeodesicOptions extends PathOptions {
 		animate?: KeyframeAnimationOptions | number;
-		fitBounds?: FitBoundsOptions | boolean;
 	}
 	export class SmoothGeodesic extends Path {
 		constructor(

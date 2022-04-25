@@ -67,9 +67,9 @@ npm i leaflet.smoothgeodesic
 
 Import leaflet FIRST, then leaflet.smoothgeodesic:
 
-```
-import L from 'leaflet'  // import { smoothGeodesic, SmoothGeodesic } from 'leaflet'; // for TypeScript
-import 'leaflet.smoothgeodesic'
+```javascript
+import L from "leaflet"; // import { smoothGeodesic, SmoothGeodesic } from 'leaflet'; // for TypeScript
+import "leaflet.smoothgeodesic";
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -86,22 +86,22 @@ Give a source coordinate and destination coordinate (with options) and optionall
 L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
 ```
 
-**Source Coords**
-<br />
-Purpose/Function:
-<br />
-Type: `[number, number]` or `L.LatLng(lat, lng)` or `L.latLng(lat, lng)`
-<br />
-Example: `[0, 0]` or `new L.LatLng(0, 0)` or `L.latLng(0, 0)`
-<br />
-<br />
-**Dest Coords**
-<br />
-Type: `[number, number]` or `L.LatLng(lat, lng)` or `L.latLng(lat, lng)`
-<br />
-Example: `[0, 0]` or `new L.LatLng(0, 0)` or `L.latLng(0, 0)`
-<br />
-<br />
+1. **Source Coords**
+   |Purpose|Available Data Types|Example|
+   |---------|-------|--------------------|
+   The starting location of the curve|`[number, number]` and `L.LatLng(lat, lng)`| `[0, 0]` or `(new L.LatLng(0, 0) or L.latLng(0, 0))` |
+2. **Dest Coords**
+   |Purpose|Available Data Types|Example|
+   |---------|-------|--------------------|
+   The ending location of the curve|`[number, number]` and `L.LatLng(lat, lng)`| `[0, 0]` or `(new L.LatLng(0, 0) or L.latLng(0, 0))` |
+3. **Number of Midpoints**
+   |Purpose|Available Data Types|Example|
+   |---------|-------|--------------------|
+   |The number calculated points along the geodesic path for use by the curve. The higher the number, the more accurate the curve, but more intensive the calculation. 65 points seems to be a good balance of true geodesic accuracy and calculation intensity. 100+ for really accurate lines.| `number (integer)` | `65` |
+4. **Options**
+   |Purpose|Available Data Types|Example|
+   |---------|-------|--------------------|
+   |Allow for customization of the geodesic path. This options object is an extension of the [Leaflet Path Options](https://leafletjs.com/SlavaUkraini/reference.html#path). All options listed there can be used here, as well as an `animate` property, which is of type [KeyframeAnimationOptions](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html) or just a number. This gives the user the ability to both customize the path and animate it from point a to point be with keyframes, or just a number defining the duration of the point A to pont B "flight"|{...[Path Options](https://leafletjs.com/SlavaUkraini/reference.html#path), animate: [`KeyframeAnimationOptions`](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html) or `number` | }| |
 
 <!-- ROADMAP -->
 

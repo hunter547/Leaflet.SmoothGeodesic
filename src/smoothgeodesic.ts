@@ -230,12 +230,7 @@ L.SmoothGeodesic = L.Path.extend({
 
 	onAdd: function (map: L.Map) {
 		L.Path.prototype.onAdd.call(this, map); // calls _update()
-		let flyToDuration =
-			(this.options.fitBounds ? this.options.fitBounds.duration || 0.25 : 0) *
-			1000;
-		if (this.options.fitBounds) {
-			this._map.fitBounds(this._bounds, this.options.fitBounds);
-		}
+
 		if (this.options.animate && this._path.animate) {
 			const length = this._svgSetDashArray();
 			// If there is a delay property, immediately set strokeDashoffset so that the curve doesn't appear until the delay is up.
@@ -243,18 +238,13 @@ L.SmoothGeodesic = L.Path.extend({
 				this._path.animate(
 					[{ strokeDashoffset: length }, { strokeDashoffset: length }],
 					{
-						duration: this.options.animate.delay + flyToDuration,
+						duration: this.options.animate.delay,
 					}
 				);
 			}
 			this._path.animate(
 				[{ strokeDashoffset: length }, { strokeDashoffset: 0 }],
-				typeof this.options.animate === "number"
-					? this.options.animate + flyToDuration
-					: {
-							...this.options.animate,
-							delay: this.options.animate?.delay || 0 + flyToDuration,
-					  }
+				this.options.animate
 			);
 		}
 	},
