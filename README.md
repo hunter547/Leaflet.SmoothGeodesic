@@ -86,22 +86,68 @@ Give a source coordinate and destination coordinate (with options) and optionall
 L.smoothGeodesic(Source Coords, Dest Coords, Number of Midpoints, Options)
 ```
 
-1. **Source Coords**
-   |Purpose|Available Data Types|Example|
-   |---------|-------|--------------------|
-   The starting location of the curve|`[number, number]` and `L.LatLng(lat, lng)`| `[0, 0]` or `(new L.LatLng(0, 0) or L.latLng(0, 0))` |
-2. **Dest Coords**
-   |Purpose|Available Data Types|Example|
-   |---------|-------|--------------------|
-   The ending location of the curve|`[number, number]` and `L.LatLng(lat, lng)`| `[0, 0]` or `(new L.LatLng(0, 0) or L.latLng(0, 0))` |
-3. **Number of Midpoints**
-   |Purpose|Available Data Types|Example|
-   |---------|-------|--------------------|
-   |The number of calculated points along the geodesic path for use by the curve. The higher the number, the more accurate the curve, but more intensive the total calculation. 65 points seems to be a good balance of true geodesic accuracy and calculation intensity. 100+ for really accurate lines.| `number (integer)` | `65` |
-4. **Options**
-   |Purpose|Available Data Types|Example|
-   |---------|-------|--------------------|
-   |Allow for customization of the geodesic path. This options object is an extension of the [Leaflet Path Options](https://leafletjs.com/SlavaUkraini/reference.html#path). All options listed there can be used here, as well as an `animate` property, which is of type [KeyframeAnimationOptions](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html) or just a number. This gives the user the ability to both customize the path and animate it from point a to point be with keyframes, or just a number defining the duration of the point A to pont B "flight"|{...[Path Options](https://leafletjs.com/SlavaUkraini/reference.html#path), animate: [`KeyframeAnimationOptions`](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html) or `number` | }| |
+1. <b>Source Coords</b>
+   <table>
+     <tr>
+     	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
+     </tr>
+     <tr>
+       <td> The starting location of the curve </td>
+       <td><code>[number, number]</code> and <code>L.LatLng(lat, lng)</code></td>
+       <td><code>[0, 0]</code> or <code>new L.LatLng(0, 0)</code></td>
+     </tr>
+   </table>
+   2. <b>Dest Coords</b>
+   <table>
+     <tr>
+     	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
+     </tr>
+     <tr>
+       <td> The ending location of the curve </td>
+       <td><code>[number, number]</code> and <code>L.LatLng(lat, lng)</code></td>
+       <td><code>[0, 0]</code> or <code>new L.LatLng(0, 0)</code></td>
+     </tr>
+   </table>
+   3. <b>Number of Midpoints</b>
+   <table>
+     <tr>
+     	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
+     </tr>
+     <tr>
+       <td> The number of calculated points along the geodesic path for use by the curve. The higher the number, the more accurate the curve, but more intensive the total calculation. 65 points seems to be a good balance of true geodesic accuracy and calculation intensity. 100+ for really accurate lines. </td>
+       <td><code>number (integer)</code></td>
+       <td><code>65</code></td>
+     </tr>
+   </table>
+   4. <b>Options</b>
+   <table>
+     <tr>
+     	<td> Purpose </td> <td> Available Data Types </td><td> Example </td>
+     </tr>
+     <tr>
+       <td> Allow for customization of the geodesic path. This options object is an extension of the <a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>. All options listed there can be used here, as well as an `animate` property, which is of type <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a>, or just a number. This gives the user the ability to both customize the path and animate it from point a to point be with keyframes, or just a number defining the duration of the point A to pont B "flight" </td>
+       <td><code>{...<a href="https://leafletjs.com/SlavaUkraini/reference.html#path">Leaflet Path Options</a>, animate: <a href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.keyframeanimationoptions.html">KeyframeAnimationOptions</a> or `number`</code></td>
+<td>
+
+```json
+{
+	"weight": 4,
+	"color": "darkslateblue",
+	"animate": { "duration": 3000, "delay": 1000 }
+}
+```
+
+</td>
+     </tr>
+   </table>
+
+<table>
+<tr>
+<td> Status </td> <td> Response </td>
+</tr>
+<tr>
+<td> 200 </td>
+<td>
 
 <!-- ROADMAP -->
 
@@ -159,3 +205,10 @@ This repo wouldn't be possible without the work of these repos:
 - Geodesic calculations: [arc.js](https://github.com/springmeyer/arc.js/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+<style>
+  th { text-align: left; }
+  table tr:first-child {
+  	text-decoration: underline;
+  }
+</style>
