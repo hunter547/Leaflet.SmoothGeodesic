@@ -1,5 +1,5 @@
 # 🌎 Leaflet.SmoothGeodesic
-
+[![NPM Version](https://badge.fury.io/js/leaflet.smoothgeodesic.svg?style=flat)](https://www.npmjs.com/package/leaflet.smoothgeodesic)
 ## [Demo](https://leaflet-smoothgeodesic.netlify.app/)
 
 ![Image of smooth geodesic path](https://raw.githubusercontent.com/hunter547/leaflet-smooth-geodesic-gatsby-site/main/static/ogImage.png)
